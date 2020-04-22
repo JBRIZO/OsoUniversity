@@ -10,7 +10,9 @@ public class Menu
         System.out.println("2. Consultar alumnos");
         System.out.println("3. Consultar clases");
         System.out.println("4. Evaluar ternas");
+        System.out.println("5. Salir");
         System.out.println("******************************************");
+        System.out.println("Escoje una opcion");
     }
 
     public void evaluacionTernas()
