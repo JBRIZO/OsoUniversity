@@ -7,9 +7,9 @@ import java.util.Stack;
 
 public class PorHacerPrograma {
 
-    ArrayList<PorHacer> ph;
-    ArrayDeque<PorHacer> enProcesso;
-    Stack<PorHacer> terminado;
+    ArrayList<alumnos> ph;
+    ArrayDeque<alumnos> enProcesso;
+    Stack<alumnos> terminado;
 
     Scanner sc;
 

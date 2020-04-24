@@ -4,38 +4,38 @@ package edu.ujcv.progra1;
 //pojo
 //plain old java object
 //encapsula un objeto
-public class PorHacer {
+public class alumnos {
     private static int corelativo = 0;
     private int id;
-    private String titulo;
-    private String desc;
+    private String nombre;
+    private String apellido;
 
 
     public int getId(){
         return id;
     }
 
+    public String getNombre(){return nombre;}
 
-    public String getTitulo(){return titulo;}
+    public String getApellido(){return apellido;}
 
-    public String getDesc(){return desc;}
 
-    public void appendDesc(String desc){
-        this.desc += "\n"+ desc;
+    public void appendApellido(String apellido){
+        this.apellido += "\n"+ apellido;
     }
 
-    PorHacer(String titulo, String desc){
+    alumnos(String nombre, String apellido){
         id = corelativo++;
-        this.titulo = titulo;
-        this.desc = desc;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public String mostrar() {
-        return titulo + " desc: \n"+desc;
+        return nombre +" " + apellido;
     }
 
     public String mostrarResumido(){
-        return titulo;
+        return nombre;
 
     }
 
