@@ -18,7 +18,8 @@ public class Menu
     public void evaluacionTernas()
     {
         System.out.println("           Evaluar ternas");
-        System.out.println("2. Clase G");
+        System.out.println("1. Clase G");
+        System.out.println("2. Alumnos expulsados");
 
     }
     public void alumnos()

@@ -6,6 +6,7 @@ package edu.ujcv.progra1;
 //encapsula un objeto
 public class alumnos {
     private static int corelativo = 0;
+    private int año;
     private String id;
     private String nombre;
     private String apellido;
@@ -18,6 +19,14 @@ public class alumnos {
     private boolean evaluacionG;
     private int contReprobadas;
     private int contParciales;
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
 
     public int getContParciales(){
         return contParciales;
@@ -114,7 +123,7 @@ public class alumnos {
     }
 
     public String mostrar() {
-        return nombre +" " + apellido;
+        return nombre +" " + apellido + " " + id;
     }
 
     public String mostrarResumido(){

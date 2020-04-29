@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class NombresAleatorios
 {
+    private int año;
     public static String generarNombresAleatorios()
     {
         Random r = new Random();

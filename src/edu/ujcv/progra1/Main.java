@@ -3,7 +3,6 @@ package edu.ujcv.progra1;
 import static edu.ujcv.progra1.NombresAleatorios.generarNombreAleatorio;
 import static edu.ujcv.progra1.NombresAleatorios.generarNumCuenta;
 import static edu.ujcv.progra1.NombresAleatorios.generarApellidoAleatorio;
-import static edu.ujcv.progra1.NombresAleatorios.generarNombresAleatorios;
 
 import java.util.*;
 
@@ -16,27 +15,31 @@ public class Main {
         ArrayList<alumnos> alumnosGenerados = new ArrayList<alumnos>();
         ArrayList<alumnos> alumnosExpulsados = new ArrayList<alumnos>();
         ArrayList<alumnos> alumnosEgresados = new ArrayList<alumnos>();
-        alumnos a = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
-        alumnos b = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
-       // alumnos c = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
-       // alumnos d = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
+        alumnos a = new alumnos(generarNombreAleatorio(),generarApellidoAleatorio(),generarNumCuenta());
+        alumnos b = new alumnos(generarNombreAleatorio(),generarApellidoAleatorio(),generarNumCuenta());
+         alumnos c = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
+        alumnos d = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
+        alumnos E = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
+        alumnos f = new alumnos(generarNombreAleatorio(), generarApellidoAleatorio(),generarNumCuenta());
         alumnosGenerados.add(a);
         alumnosGenerados.add(b);
-     //   alumnosGenerados.add(c);
-      //  alumnosGenerados.add(d);
-        ArrayList<alumnos> ClaseA = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseB = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseC = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseD = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseE = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseG = new ArrayList<alumnos>(10);
-        ArrayList<alumnos> ClaseF = new ArrayList<alumnos>(10);
+        alumnosGenerados.add(c);
+        alumnosGenerados.add(d);
+        alumnosGenerados.add(E);
+        alumnosGenerados.add(f);
+        ClaseA claseA = new ClaseA();
+        ClaseB claseB = new ClaseB();
+        ClaseC claseC = new ClaseC();
+        ClaseD claseD = new ClaseD();
+        ClaseE claseE = new ClaseE();
+        ClaseF claseF = new ClaseF();
+        claseG claseG = new claseG();
         int contPasos = 0;
 
         Menu M = new Menu();
         for (int i = 0; i < alumnosGenerados.size(); i++) {
-            ClaseA.add(alumnosGenerados.get(i));
-            ClaseC.add(alumnosGenerados.get(i));
+            claseA.agregar(alumnosGenerados.get(i));
+            claseC.agregar(alumnosGenerados.get(i));
         }
         boolean salir = false;
         while (salir == false)
@@ -48,161 +51,175 @@ public class Main {
                     case 1:
                         if (contPasos == 0) {
                             contPasos++;
-                            System.out.println("CLASE A");
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                System.out.println(ClaseA.get(i));
+                            //System.out.println("CLASE A");
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                System.out.println(claseA.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseA.get(i).setEvaluacionA(true);
-                                    System.out.println("APROBADO");
-                                    ClaseA.get(i).parcial();
+                                    claseA.getAlumnos(i).setEvaluacionA(true);
+                                    //System.out.println("APROBADO");
+                                    claseA.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseA.get(i).setEvaluacionA(false);
-                                    ClaseA.get(i).reprobar();
-                                    ClaseA.get(i).parcial();
-                                    System.out.println("REPROBADO");
+                                    claseA.getAlumnos(i).setEvaluacionA(false);
+                                    claseA.getAlumnos(i).reprobar();
+                                    claseA.getAlumnos(i).parcial();
+                                    //System.out.println("REPROBADO");
                                 }
-                                if (ClaseA.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                                if (claseA.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseA.getAlumnos(i));
+                                    claseA.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                if (ClaseA.get(i).getEvaluacionA() == true) {
-                                    ClaseB.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                if (claseA.getAlumnos(i).getEvaluacionA() == true) {
+                                    claseB.agregar(claseA.getAlumnos(i));
+                                    claseA.remover(i);
                                     i--;
                                 }
                             }
-                            System.out.println("CLASE C");
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                System.out.println(ClaseC.get(i));
+                           // System.out.println("CLASE C");
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                System.out.println(claseC.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseC.get(i).setEvaluacionC(true);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("APROBADDO");
+                                    claseC.getAlumnos(i).setEvaluacionC(true);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("APROBADDO");
                                 } else {
-                                    ClaseC.get(i).setEvaluacionC(false);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("REPROBADO");
+                                    claseC.getAlumnos(i).setEvaluacionC(false);
+                                    claseC.getAlumnos(i).parcial();
+                                    //System.out.println("REPROBADO");
                                 }
-                                if (ClaseC.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseC.get(i));
-                                    ClaseC.remove(i);
+                                if (claseC.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseC.getAlumnos(i));
+                                    claseC.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                if (ClaseC.get(i).getEvaluacionC() == true) {
-                                    ClaseC.remove(i);
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                if (claseC.getAlumnos(i).getEvaluacionC() == true) {
+                                    claseD.requisitos(claseC.getAlumnos(i));
+                                    claseC.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < alumnosGenerados.size(); i++) {
-                                if (alumnosGenerados.get(i).getEvaluacionA() && alumnosGenerados.get(i).getEvaluacionC() == true) {
-                                    ClaseD.add(alumnosGenerados.get(i));
+                           for (int i = 0; i < claseD.tamañoCola(); i++)
+                           {
+                               if (claseD.mostrarCola(i).getEvaluacionA() == true)
+                               {
+                                    claseD.agregar(alumnosGenerados.get(i));
+                                    claseD.removerDeCola(i);
+                                    i--;
                                 }
-                            }
+                           }
                             break;
                         }
                         if (contPasos == 1) {
                             contPasos++;
-
-                            System.out.println("CLASE B");
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                System.out.println(ClaseB.get(i));
+                            //System.out.println("CLASE B");
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                System.out.println(claseB.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseB.get(i).setEvaluacionB(true);
-                                    System.out.println("Aprobado");
-                                    ClaseB.get(i).parcial();
+                                    claseB.getAlumnos(i).setEvaluacionB(true);
+                                    //System.out.println("Aprobado");
+                                    claseB.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseB.get(i).setEvaluacionB(false);
-                                    System.out.println("Reprobado");
-                                    ClaseB.get(i).parcial();
+                                    claseB.getAlumnos(i).setEvaluacionB(false);
+                                    //System.out.println("Reprobado");
+                                    claseB.getAlumnos(i).parcial();
                                 }
                             }
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                if (ClaseB.get(i).getEvaluacionB() == true) {
-                                    ClaseE.add(ClaseB.get(i));
-                                    ClaseB.remove(i);
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                if (claseB.getAlumnos(i).getEvaluacionB() == true) {
+                                    claseE.agregar(claseB.getAlumnos(i));
+                                    claseB.remover(i);
                                     i--;
-                                }
-                            }
-
-                            System.out.println("CLASE D");
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                System.out.println(ClaseD.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseD.get(i).setEvaluacionD(true);
-                                    System.out.println("APROBADO");
-                                    ClaseD.get(i).parcial();
-                                } else {
-                                    System.out.println("REPROBADO");
-                                    ClaseD.get(i).parcial();
-                                    ClaseD.get(i).setEvaluacionD(false);
                                 }
                             }
 
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                if (ClaseD.get(i).getEvaluacionD() == true) {
-                                    ClaseF.add(ClaseD.get(i));
-                                    ClaseD.remove(i);
-                                    i--;
-                                }
-                            }
-                            System.out.println("CLASE A");
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                System.out.println(ClaseA.get(i));
+                            //System.out.println("CLASE D");
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                System.out.println(claseD.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseA.get(i).setEvaluacionA(true);
-                                    System.out.println("APROBADO");
-                                    ClaseA.get(i).parcial();
+                                    claseD.getAlumnos(i).setEvaluacionD(true);
+                                   // System.out.println("APROBADO");
+                                    claseD.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseA.get(i).setEvaluacionA(false);
-                                    ClaseA.get(i).reprobar();
-                                    ClaseA.get(i).parcial();
-                                    System.out.println("REPROBADO");
+                                   // System.out.println("REPROBADO");
+                                    claseD.getAlumnos(i).parcial();
+                                    claseD.getAlumnos(i).setEvaluacionD(false);
                                 }
-                                if (ClaseA.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                            }
+
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                if (claseD.getAlumnos(i).getEvaluacionD() == true) {
+                                    claseF.agregar(claseD.getAlumnos(i));
+                                    claseD.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                if (ClaseA.get(i).getEvaluacionA() == true) {
-                                    ClaseB.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
-                                    i--;
-                                }
-                            }
-                            System.out.println("CLASE C");
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                System.out.println(ClaseC.get(i));
+                           // System.out.println("CLASE A");
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                System.out.println(claseA.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseC.get(i).setEvaluacionC(true);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("APROBADDO");
+                                    claseA.getAlumnos(i).setEvaluacionA(true);
+                                   // System.out.println("APROBADO");
+                                    claseA.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseC.get(i).setEvaluacionC(false);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("REPROBADO");
+                                    claseA.getAlumnos(i).setEvaluacionA(false);
+                                    claseA.getAlumnos(i).reprobar();
+                                    claseA.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
                                 }
-                                if (ClaseC.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseC.get(i));
-                                    ClaseC.remove(i);
+                                if (claseA.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseA.getAlumnos(i));
+                                    claseA.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                if (ClaseC.get(i).getEvaluacionC() == true) {
-                                    ClaseC.remove(i);
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                if (claseA.getAlumnos(i).getEvaluacionA() == true) {
+                                    claseB.agregar(claseA.getAlumnos(i));
+                                    claseA.remover(i);
+                                    i--;
+                                }
+                            }
+                           // System.out.println("CLASE C");
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                System.out.println(claseC.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseC.getAlumnos(i).setEvaluacionC(true);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("APROBADDO");
+                                } else {
+                                    claseC.getAlumnos(i).setEvaluacionC(false);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
+                                }
+                                if (claseC.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                if (claseC.getAlumnos(i).getEvaluacionC() == true) {
+                                    claseD.requisitos(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseD.tamañoCola(); i++)
+                            {
+                                if (claseD.mostrarCola(i).getEvaluacionA() == true)
+                                {
+                                    claseD.agregar(alumnosGenerados.get(i));
+                                    claseD.removerDeCola(i);
                                     i--;
                                 }
                             }
@@ -212,133 +229,161 @@ public class Main {
                         if (contPasos == 2)
                         {
                             contPasos++;
-                            System.out.println("CLASE E");
-                            for (int i = 0; i < ClaseE.size(); i++) {
-                                System.out.println(ClaseE.get(i));
+                            //System.out.println("CLASE E");
+                            for (int i = 0; i < claseE.tamaño(); i++) {
+                                System.out.println(claseE.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseE.get(i).setEvaluacionE(true);
-                                    System.out.println("APROBADO");
-                                    ClaseE.get(i).parcial();
+                                    claseE.getAlumnos(i).setEvaluacionE(true);
+                                   // System.out.println("APROBADO");
+                                    claseE.getAlumnos(i).parcial();
                                 } else {
-                                    System.out.println("REPROBADO");
-                                    ClaseE.get(i).parcial();
-                                    ClaseE.get(i).setEvaluacionE(false);
+                                   // System.out.println("REPROBADO");
+                                    claseE.getAlumnos(i).parcial();
+                                    claseE.getAlumnos(i).setEvaluacionE(false);
                                 }
                             }
-                            System.out.println("CLASE F");
-                            for (int i = 0; i < ClaseF.size(); i++) {
-                                System.out.println(ClaseF.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseF.get(i).setEvaluacionF(true);
-                                    System.out.println("APROBADO");
-                                    ClaseF.get(i).parcial();
-                                } else {
-                                    System.out.println("REPROBADO");
-                                    ClaseF.get(i).parcial();
-                                    ClaseF.get(i).setEvaluacionD(false);
-                                }
-                            }
-                            System.out.println("CLASE A");
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                System.out.println(ClaseA.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseA.get(i).setEvaluacionA(true);
-                                    System.out.println("APROBADO");
-                                    ClaseA.get(i).parcial();
-                                } else {
-                                    ClaseA.get(i).setEvaluacionA(false);
-                                    ClaseA.get(i).reprobar();
-                                    ClaseA.get(i).parcial();
-                                    System.out.println("REPROBADO");
-                                }
-                                if (ClaseA.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                            for (int i = 0; i < claseE.tamaño(); i++) {
+                                if (claseE.getAlumnos(i).getEvaluacionE() == true) {
+                                    claseE.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                if (ClaseA.get(i).getEvaluacionA() == true) {
-                                    ClaseB.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
-                                    i--;
-                                }
-                            }
-                            System.out.println("CLASE B");
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                System.out.println(ClaseB.get(i));
+                            //System.out.println("CLASE F");
+                            for (int i = 0; i < claseF.tamaño(); i++) {
+                                System.out.println(claseF.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseB.get(i).setEvaluacionB(true);
-                                    System.out.println("Aprobado");
-                                    ClaseB.get(i).parcial();
+                                    claseF.getAlumnos(i).setEvaluacionF(true);
+                                  //  System.out.println("APROBADO");
+                                    claseF.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseB.get(i).setEvaluacionB(false);
-                                    System.out.println("Reprobado");
-                                    ClaseB.get(i).parcial();
+                                   // System.out.println("REPROBADO");
+                                    claseF.getAlumnos(i).parcial();
+                                    claseF.getAlumnos(i).setEvaluacionD(false);
                                 }
                             }
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                if (ClaseB.get(i).getEvaluacionB() == true) {
-                                    ClaseE.add(ClaseB.get(i));
-                                    ClaseB.remove(i);
-                                    i--;
+                                for (int i = 0; i < claseF.tamaño(); i++) {
+                                    if (claseF.getAlumnos(i).getEvaluacionF() == true) {
+                                        claseF.remover(i);
+                                        i--;
+                                    }
                                 }
-                            }
-                            System.out.println("CLASE C");
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                System.out.println(ClaseC.get(i));
+                                for (int i = 0; i < alumnosGenerados.size();i++){
+                                    if ((alumnosGenerados.get(i).getEvaluacionE() && alumnosGenerados.get(i).getEvaluacionF()) == true){
+                                        claseG.agregar(alumnosGenerados.get(i));
+                                    }
+                                }
+                            //System.out.println("CLASE A");
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                System.out.println(claseA.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseC.get(i).setEvaluacionC(true);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("APROBADDO");
+                                    claseA.getAlumnos(i).setEvaluacionA(true);
+                                   // System.out.println("APROBADO");
+                                    claseA.getAlumnos(i).parcial();
                                 } else {
-                                    ClaseC.get(i).setEvaluacionC(false);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("REPROBADO");
+                                    claseA.getAlumnos(i).setEvaluacionA(false);
+                                    claseA.getAlumnos(i).reprobar();
+                                    claseA.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
                                 }
-                                if (ClaseC.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseC.get(i));
-                                    ClaseC.remove(i);
+                                if (claseA.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseA.getAlumnos(i));
+                                    claseA.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                if (ClaseC.get(i).getEvaluacionC() == true) {
-                                    ClaseC.remove(i);
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                if (claseA.getAlumnos(i).getEvaluacionA() == true) {
+                                    claseB.agregar(claseA.getAlumnos(i));
+                                    claseA.remover(i);
                                     i--;
                                 }
                             }
-                            System.out.println("CLASE D");
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                System.out.println(ClaseD.get(i));
+                            //System.out.println("CLASE B");
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                System.out.println(claseB.getAlumnos(i));
                                 int nota = (int) (r.nextDouble() * 100);
                                 if (nota <= 70) {
-                                    ClaseD.get(i).setEvaluacionD(true);
-                                    System.out.println("APROBADO");
-                                    ClaseD.get(i).parcial();
+                                    claseB.getAlumnos(i).setEvaluacionB(true);
+                                   // System.out.println("Aprobado");
+                                    claseB.getAlumnos(i).parcial();
                                 } else {
-                                    System.out.println("REPROBADO");
-                                    ClaseD.get(i).parcial();
-                                    ClaseD.get(i).setEvaluacionD(false);
+                                    claseB.getAlumnos(i).setEvaluacionB(false);
+                                   // System.out.println("Reprobado");
+                                    claseB.getAlumnos(i).parcial();
                                 }
                             }
-
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                if (ClaseD.get(i).getEvaluacionD() == true) {
-                                    ClaseF.add(ClaseD.get(i));
-                                    ClaseD.remove(i);
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                if (claseB.getAlumnos(i).getEvaluacionB() == true) {
+                                    claseE.agregar(claseB.getAlumnos(i));
+                                    claseB.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                if (ClaseB.get(i).getEvaluacionB() == true) {
-                                    ClaseE.add(ClaseB.get(i));
-                                    ClaseB.remove(i);
+                            for (int i = 0; i < claseB.tamaño(); i++)
+                            {
+                                if (claseB.getAlumnos(i).getEvaluacionB() == true) {
+                                    claseE.agregar(claseB.getAlumnos(i));
+                                    claseB.remover(i);
+                                    i--;
+                                }
+                            }
+                           // System.out.println("CLASE C");
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                System.out.println(claseC.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseC.getAlumnos(i).setEvaluacionC(true);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("APROBADDO");
+                                } else {
+                                    claseC.getAlumnos(i).setEvaluacionC(false);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
+                                }
+                                if (claseC.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                if (claseC.getAlumnos(i).getEvaluacionC() == true) {
+                                    claseD.requisitos(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseD.tamañoCola(); i++)
+                            {
+                                if (claseD.mostrarCola(i).getEvaluacionA() == true)
+                                {
+                                    claseD.agregar(alumnosGenerados.get(i));
+                                    claseD.removerDeCola(i);
+                                    i--;
+                                }
+                            }
+                           // System.out.println("CLASE D");
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                System.out.println(claseD.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseD.getAlumnos(i).setEvaluacionD(true);
+                                    //System.out.println("APROBADO");
+                                    claseD.getAlumnos(i).parcial();
+                                } else {
+                                   // System.out.println("REPROBADO");
+                                    claseD.getAlumnos(i).parcial();
+                                    claseD.getAlumnos(i).reprobar();
+                                    claseD.getAlumnos(i).setEvaluacionD(false);
+                                }
+                            }
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                if (claseD.getAlumnos(i).getEvaluacionD() == true) {
+                                    claseF.agregar(claseD.getAlumnos(i));
+                                    claseD.remover(i);
                                     i--;
                                 }
                             }
@@ -347,131 +392,139 @@ public class Main {
 
                         if (contPasos >= 3) {
                             contPasos++;
+                            //System.out.println("CLASE G");
+                            for (int i = 0; i < alumnosGenerados.size(); i++) {
+                                if ((alumnosGenerados.get(i).getEvaluacionE() && alumnosGenerados.get(i).getEvaluacionF()) == true) {
+                                    claseG.agregar(alumnosGenerados.get(i));
+                                    System.out.println(claseG.getAlumnos(i));
+                                }
+                            }
+                           // System.out.println("CLASE A");
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                System.out.println(claseA.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseA.getAlumnos(i).setEvaluacionA(true);
+                                   // System.out.println("APROBADO");
+                                    claseA.getAlumnos(i).parcial();
+                                } else {
+                                    claseA.getAlumnos(i).setEvaluacionA(false);
+                                    claseA.getAlumnos(i).reprobar();
+                                    claseA.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
+                                }
+                                if (claseA.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseA.getAlumnos(i));
+                                    claseA.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                if (claseA.getAlumnos(i).getEvaluacionA() == true) {
+                                    claseB.agregar(claseA.getAlumnos(i));
+                                    claseA.remover(i);
+                                    i--;
+                                }
+                            }
+                            //System.out.println("CLASE B");
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                System.out.println(claseB.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseB.getAlumnos(i).setEvaluacionB(true);
+                                   // System.out.println("Aprobado");
+                                    claseB.getAlumnos(i).parcial();
+                                } else {
+                                    claseB.getAlumnos(i).setEvaluacionB(false);
+                                   // System.out.println("Reprobado");
+                                    claseB.getAlumnos(i).parcial();
+                                }
+                            }
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                if (claseB.getAlumnos(i).getEvaluacionB() == true) {
+                                    claseE.agregar(claseB.getAlumnos(i));
+                                    claseB.remover(i);
+                                    i--;
+                                }
+                            }
+                           // System.out.println("CLASE C");
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                System.out.println(claseC.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseC.getAlumnos(i).setEvaluacionC(true);
+                                    claseC.getAlumnos(i).parcial();
+                                  //  System.out.println("APROBADDO");
+                                } else {
+                                    claseC.getAlumnos(i).setEvaluacionC(false);
+                                    claseC.getAlumnos(i).parcial();
+                                   // System.out.println("REPROBADO");
+                                }
+                                if (claseC.getAlumnos(i).getContReprobadas() > 2) {
+                                    alumnosExpulsados.add(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                if (claseC.getAlumnos(i).getEvaluacionC() == true) {
+                                    claseD.requisitos(claseC.getAlumnos(i));
+                                    claseC.remover(i);
+                                    i--;
+                                }
+                            }
+                            for (int i = 0; i < claseD.tamañoCola(); i++)
+                            {
+                                if (claseD.mostrarCola(i).getEvaluacionA() == true)
+                                {
+                                    claseD.agregar(alumnosGenerados.get(i));
+                                    claseD.removerDeCola(i);
+                                    i--;
+                                }
+                            }
+                            //System.out.println("CLASE D");
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                System.out.println(claseD.getAlumnos(i));
+                                int nota = (int) (r.nextDouble() * 100);
+                                if (nota <= 70) {
+                                    claseD.getAlumnos(i).setEvaluacionD(true);
+                                   // System.out.println("APROBADO");
+                                    claseD.getAlumnos(i).parcial();
+                                } else {
+                                  //  System.out.println("REPROBADO");
+                                    claseD.getAlumnos(i).parcial();
+                                    claseD.getAlumnos(i).setEvaluacionD(false);
+                                }
+                            }
 
-                            System.out.println("CLASE A");
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                System.out.println(ClaseA.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseA.get(i).setEvaluacionA(true);
-                                    System.out.println("APROBADO");
-                                    ClaseA.get(i).parcial();
-                                } else {
-                                    ClaseA.get(i).setEvaluacionA(false);
-                                    ClaseA.get(i).reprobar();
-                                    ClaseA.get(i).parcial();
-                                    System.out.println("REPROBADO");
-                                }
-                                if (ClaseA.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                if (claseD.getAlumnos(i).getEvaluacionD() == true) {
+                                    claseF.agregar(claseD.getAlumnos(i));
+                                    claseD.remover(i);
                                     i--;
                                 }
                             }
-                            for (int i = 0; i < ClaseA.size(); i++) {
-                                if (ClaseA.get(i).getEvaluacionA() == true) {
-                                    ClaseB.add(ClaseA.get(i));
-                                    ClaseA.remove(i);
+                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                if (claseB.getAlumnos(i).getEvaluacionB() == true) {
+                                    claseE.agregar(claseB.getAlumnos(i));
+                                    claseB.remover(i);
                                     i--;
                                 }
                             }
-                            System.out.println("CLASE B");
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                System.out.println(ClaseB.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseB.get(i).setEvaluacionB(true);
-                                    System.out.println("Aprobado");
-                                    ClaseB.get(i).parcial();
-                                } else {
-                                    ClaseB.get(i).setEvaluacionB(false);
-                                    System.out.println("Reprobado");
-                                    ClaseB.get(i).parcial();
-                                }
-                            }
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                if (ClaseB.get(i).getEvaluacionB() == true) {
-                                    ClaseE.add(ClaseB.get(i));
-                                    ClaseB.remove(i);
-                                    i--;
-                                }
-                            }
-                            System.out.println("CLASE C");
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                System.out.println(ClaseC.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseC.get(i).setEvaluacionC(true);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("APROBADDO");
-                                } else {
-                                    ClaseC.get(i).setEvaluacionC(false);
-                                    ClaseC.get(i).parcial();
-                                    System.out.println("REPROBADO");
-                                }
-                                if (ClaseC.get(i).getContReprobadas() > 2) {
-                                    alumnosExpulsados.add(ClaseC.get(i));
-                                    ClaseC.remove(i);
-                                    i--;
-                                }
-                            }
-                            for (int i = 0; i < ClaseC.size(); i++) {
-                                if (ClaseC.get(i).getEvaluacionC() == true) {
-                                    ClaseC.remove(i);
-                                    i--;
-                                }
-                            }
-                            System.out.println("CLASE D");
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                System.out.println(ClaseD.get(i));
-                                int nota = (int) (r.nextDouble() * 100);
-                                if (nota <= 70) {
-                                    ClaseD.get(i).setEvaluacionD(true);
-                                    System.out.println("APROBADO");
-                                    ClaseD.get(i).parcial();
-                                } else {
-                                    System.out.println("REPROBADO");
-                                    ClaseD.get(i).parcial();
-                                    ClaseD.get(i).setEvaluacionD(false);
-                                }
-                            }
-
-                            for (int i = 0; i < ClaseD.size(); i++) {
-                                if (ClaseD.get(i).getEvaluacionD() == true) {
-                                    ClaseF.add(ClaseD.get(i));
-                                    ClaseD.remove(i);
-                                    i--;
-                                }
-                            }
-                            for (int i = 0; i < ClaseB.size(); i++) {
-                                if (ClaseB.get(i).getEvaluacionB() == true) {
-                                    ClaseE.add(ClaseB.get(i));
-                                    ClaseB.remove(i);
-                                    i--;
-                                }
-                            }
-                            for (int i = 0; i < ClaseE.size();i++){
-                                System.out.println(ClaseE.get(i));
+                            for (int i = 0; i < claseE.tamaño();i++){
+                                System.out.println(claseE.getAlumnos(i));
                                 int nota = (int)(r.nextDouble()*100);
                                 if (nota <= 70){
-                                    System.out.println("APROBADO");
-                                    ClaseE.get(i).setEvaluacionE(true);
-                                    ClaseE.get(i).parcial();
+                                  //  System.out.println("APROBADO");
+                                    claseE.getAlumnos(i).setEvaluacionE(true);
+                                    claseE.getAlumnos(i).parcial();
                                 }else{
-                                    System.out.println("REPROBADO");
-                                    ClaseE.get(i).setEvaluacionE(false);
-                                    ClaseE.get(i).parcial();
-                                    ClaseE.get(i).reprobar();
+                                    //System.out.println("REPROBADO");
+                                    claseE.getAlumnos(i).setEvaluacionE(false);
+                                    claseE.getAlumnos(i).parcial();
+                                    claseE.getAlumnos(i).reprobar();
                                 }
                             }
-
-                        System.out.println("CLASE G");
-                        for (int i = 0; i < alumnosGenerados.size(); i++) {
-                            if (alumnosGenerados.get(i).getEvaluacionE() && alumnosGenerados.get(i).getEvaluacionF() == true) {
-                                ClaseG.add(alumnosGenerados.get(i));
-                                System.out.println(ClaseG.get(i));
-                            }
-                        }
 
                         break;
                 }
@@ -505,71 +558,71 @@ public class Main {
                                 int opcion3 = sc.nextInt();
                                 switch (opcion3) {
                                     case 1:
-                                        if (ClaseA.size() == 0) {
+                                        if (claseA.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseA.size(); i++) {
-                                                System.out.println(ClaseA.get(i));
+                                            for (int i = 0; i < claseA.tamaño(); i++) {
+                                                System.out.println(claseA.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 2:
-                                        if (ClaseB.size() == 0) {
+                                        if (claseB.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseB.size(); i++) {
-                                                System.out.println(ClaseB.get(i));
+                                            for (int i = 0; i < claseB.tamaño(); i++) {
+                                                System.out.println(claseB.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 3:
-                                        if (ClaseC.size() == 0) {
+                                        if (claseC.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseC.size(); i++) {
-                                                System.out.println(ClaseC.get(i));
+                                            for (int i = 0; i < claseC.tamaño(); i++) {
+                                                System.out.println(claseC.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 4:
-                                        if (ClaseD.size() == 0) {
+                                        if (claseD.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseD.size(); i++) {
-                                                System.out.println(ClaseD.get(i));
+                                            for (int i = 0; i < claseD.tamaño(); i++) {
+                                                System.out.println(claseD.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 5:
-                                        if (ClaseE.size() == 0) {
+                                        if (claseE.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseE.size(); i++) {
-                                                System.out.println(ClaseE.get(i));
+                                            for (int i = 0; i < claseE.tamaño(); i++) {
+                                                System.out.println(claseE.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 6:
-                                        if (ClaseF.size() == 0) {
+                                        if (claseF.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseF.size(); i++) {
-                                                System.out.println(ClaseF.get(i));
+                                            for (int i = 0; i < claseF.tamaño(); i++) {
+                                                System.out.println(claseF.getAlumnos(i));
                                             }
                                         }
                                         break;
 
                                     case 7:
-                                        if (ClaseG.size() == 0) {
+                                        if (claseG.tamaño() == 0) {
                                             System.out.println("No hay alumnos en esta clase");
                                         } else {
-                                            for (int i = 0; i < ClaseG.size(); i++) {
-                                                System.out.println(ClaseG.get(i));
+                                            for (int i = 0; i < claseG.tamaño(); i++) {
+                                                System.out.println(claseG.getAlumnos(i));
                                             }
                                         }
                                         break;
@@ -593,23 +646,31 @@ public class Main {
                             switch (opcion4)
                             {
                                 case 1:
-                                    for (int i = 0; i < ClaseG.size();i++){
+                                    for (int i = 0; i < claseG.tamaño(); i++){
                                         System.out.println("Alumno " + i + ":");
-                                        System.out.println(ClaseG.get(i));
+                                        System.out.println(claseG.getAlumnos(i));
                                         System.out.println("1) Aprobar \n 2)Reprobar");
                                         int calificacion = (int) lc.obtenerEnteroValidado("Debes insertar un numero");
                                         if (calificacion == 1){
-                                            ClaseG.get(i).setEvaluacionG(true);
-                                            ClaseG.get(i).parcial();
+                                            claseG.getAlumnos(i).setEvaluacionG(true);
+                                            claseG.getAlumnos(i).parcial();
                                         }if (calificacion == 2){
-                                            ClaseG.get(i).setEvaluacionG(false);
-                                            ClaseG.get(i).reprobar();
-                                            ClaseG.get(i).parcial();
+                                            claseG.getAlumnos(i).setEvaluacionG(false);
+                                            claseG.getAlumnos(i).reprobar();
+                                            claseG.getAlumnos(i).parcial();
                                         }else{
                                             System.out.println("Debe ser 1 o 2");
                                         }
                                     }
                                     break;
+                                case 2:
+                                    if (alumnosExpulsados.size() == 0) {
+                                        System.out.println("NO HAY ALUMNOS EXPULSADOS");
+                                    }else {
+                                        for (int i = 0; i < alumnosExpulsados.size(); i++) {
+                                            System.out.println(i + ": " + alumnosExpulsados.get(i));
+                                        }
+                                    }
 
                             }
                                 break;
